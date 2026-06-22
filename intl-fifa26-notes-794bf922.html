@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>世界杯 · 稳定入口与页面概览</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background-color: #f4f7fc;
+            color: #1d2b3e;
+            line-height: 1.65;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: #0466c8;
+            text-decoration: underline;
+            text-underline-offset: 3px;
+            text-decoration-color: rgba(4, 102, 200, 0.3);
+            transition: text-decoration-color 0.2s, color 0.2s;
+        }
+
+        a:hover,
+        a:focus {
+            color: #023e7d;
+            text-decoration-color: #023e7d;
+        }
+
+        .container {
+            max-width: 1080px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* 头部导航 */
+        .site-header {
+            background-color: #0f1923;
+            padding: 16px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+        }
+
+        .header-inner {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo-area {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: radial-gradient(circle at 30% 30%, #2d7df9, #034078);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+            font-size: 16px;
+            letter-spacing: -0.5px;
+        }
+
+        .logo-text {
+            color: #eef3f8;
+            font-weight: 600;
+            font-size: 18px;
+            letter-spacing: 0.4px;
+        }
+
+        .logo-text span {
+            color: #7c9bc7;
+            font-weight: 400;
+        }
+
+        .top-nav {
+            display: flex;
+            gap: 28px;
+            list-style: none;
+        }
+
+        .top-nav a {
+            color: #bbc8dd;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 4px 0;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.2s, color 0.2s;
+        }
+
+        .top-nav a:hover {
+            color: white;
+            border-bottom-color: #2d7df9;
+        }
+
+        /* 深色头图 Hero */
+        .hero-dark {
+            background: linear-gradient(145deg, #0b121c 0%, #182230 100%);
+            padding: 72px 0 64px;
+            color: #e2edf9;
+        }
+
+        .hero-grid {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 40px;
+        }
+
+        .hero-content {
+            flex: 1 1 55%;
+        }
+
+        .hero-content h1 {
+            font-size: 2.6rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 18px;
+            color: white;
+            letter-spacing: -0.02em;
+        }
+
+        .hero-content h1 i {
+            font-style: normal;
+            background: linear-gradient(135deg, #4c9aff, #a5c8ff);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .hero-desc {
+            font-size: 1rem;
+            color: #b6cae3;
+            max-width: 560px;
+            margin-bottom: 28px;
+            line-height: 1.7;
+        }
+
+        .hero-highlight {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 12px 20px;
+            border-left: 4px solid #2d7df9;
+            border-radius: 0 8px 8px 0;
+            margin-top: 12px;
+            font-size: 0.95rem;
+        }
+
+        .hero-extra {
+            flex: 1 1 35%;
+            min-width: 200px;
+        }
+
+        .stat-mini {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 14px;
+            padding: 24px 20px;
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .stat-mini .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: white;
+            line-height: 1;
+        }
+
+        .stat-mini .stat-label {
+            color: #8aa4c9;
+            font-size: 0.85rem;
+            margin-top: 4px;
+            letter-spacing: 0.3px;
+        }
+
+        /* 浅色正文区 */
+        .section-light {
+            background-color: #ffffff;
+            padding: 60px 0;
+        }
+
+        .section-title {
+            font-size: 1.6rem;
+            font-weight: 600;
+            margin-bottom: 28px;
+            color: #0e1b2b;
+            letter-spacing: -0.01em;
+            border-left: 6px solid #2d7df9;
+            padding-left: 18px;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 28px;
+            margin-bottom: 24px;
+        }
+
+        .feature-card {
+            background: #f8faff;
+            border-radius: 14px;
+            padding: 28px 22px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.02);
+            border: 1px solid #e5edf5;
+            transition: box-shadow 0.2s, transform 0.15s;
+        }
+
+        .feature-card:hover {
+            box-shadow: 0 8px 24px rgba(0, 40, 80, 0.06);
+            transform: translateY(-2px);
+        }
+
+        .feature-card h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #0b1d30;
+        }
+
+        .feature-card p {
+            font-size: 0.92rem;
+            color: #2c4059;
+        }
+
+        .feature-card .tag {
+            display: inline-block;
+            background: #e4edf8;
+            color: #034078;
+            font-size: 0.7rem;
+            font-weight: 600;
+            padding: 2px 10px;
+            border-radius: 30px;
+            margin-top: 12px;
+            letter-spacing: 0.3px;
+        }
+
+        .subsection {
+            margin-top: 48px;
+        }
+
+        .subsection h4 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #1b2c40;
+            margin-bottom: 12px;
+        }
+
+        .desc-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .desc-item {
+            display: flex;
+            gap: 10px;
+            align-items: baseline;
+            font-size: 0.95rem;
+            color: #1d3147;
+            padding: 6px 0;
+            border-bottom: 1px dashed #dce6ef;
+        }
+
+        .desc-item strong {
+            font-weight: 600;
+            min-width: 72px;
+            color: #0f1f32;
+        }
+
+        .faq-preview {
+            background: #f2f6fd;
+            border-radius: 14px;
+            padding: 28px 26px;
+            margin-top: 32px;
+        }
+
+        .faq-preview h4 {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 18px;
+            color: #0b1a2c;
+        }
+
+        .faq-item {
+            margin-bottom: 16px;
+        }
+
+        .faq-item strong {
+            display: block;
+            font-weight: 600;
+            color: #0b1a2c;
+            font-size: 0.95rem;
+            margin-bottom: 4px;
+        }
+
+        .faq-item p {
+            font-size: 0.9rem;
+            color: #2a4059;
+            line-height: 1.6;
+        }
+
+        .inline-link-wrap {
+            margin: 28px 0 10px;
+            font-size: 0.98rem;
+            background: #f2f6fd;
+            padding: 14px 20px;
+            border-radius: 10px;
+            border-left: 4px solid #2d7df9;
+        }
+
+        /* 底部 */
+        .site-footer {
+            background: #0f1923;
+            color: #7a90af;
+            padding: 28px 0;
+            font-size: 0.82rem;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .site-footer a {
+            color: #9bb5d9;
+            text-decoration: underline;
+            text-underline-offset: 2px;
+        }
+
+        /* 响应式 */
+        @media (max-width: 700px) {
+            .header-inner {
+                flex-direction: column;
+                gap: 14px;
+                align-items: flex-start;
+            }
+
+            .top-nav {
+                gap: 18px;
+                flex-wrap: wrap;
+            }
+
+            .hero-content h1 {
+                font-size: 1.9rem;
+            }
+
+            .hero-grid {
+                flex-direction: column;
+                gap: 24px;
+            }
+
+            .card-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section-title {
+                font-size: 1.3rem;
+            }
+
+            .stat-mini .stat-number {
+                font-size: 1.6rem;
+            }
+        }
+
+        @media (max-width: 450px) {
+            .container {
+                padding: 0 16px;
+            }
+
+            .hero-dark {
+                padding: 48px 0 40px;
+            }
+
+            .section-light {
+                padding: 40px 0;
+            }
+
+            .feature-card {
+                padding: 20px 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<!-- 顶部导航 -->
+<header class="site-header">
+    <div class="container header-inner">
+        <div class="logo-area">
+            <div class="logo-icon">W</div>
+            <div class="logo-text">World<span>Cup</span></div>
+        </div>
+        <ul class="top-nav">
+            <li><a href="#intro">概述</a></li>
+            <li><a href="#scenarios">场景</a></li>
+            <li><a href="#faq">说明</a></li>
+            <li><a href="https://intl-fifa26.com" target="_blank" rel="noopener noreferrer">世界杯</a></li>
+        </ul>
+    </div>
+</header>
+
+<!-- 深色头图 Hero -->
+<section class="hero-dark">
+    <div class="container hero-grid">
+        <div class="hero-content">
+            <h1>通向 <i>国际足联世界杯</i> 的稳定入口</h1>
+            <p class="hero-desc">
+                一个轻量导航页面，聚合核心信息流与页面功能说明。为关注世界杯动态的访问者提供结构清晰的索引，降低信息摩擦。
+            </p>
+            <div class="hero-highlight">
+                ⚡ 当前入口指向官方集成页面 <strong>intl-fifa26.com</strong>，建议通过浏览器直接加载，确保访问稳定性。
+            </div>
+        </div>
+        <div class="hero-extra">
+            <div class="stat-mini">
+                <div class="stat-number">3+</div>
+                <div class="stat-label">核心场景模块 · 快速定位</div>
+                <div style="margin-top: 14px; height: 2px; background: linear-gradient(90deg, #2d7df9, transparent);"></div>
+                <div style="margin-top: 14px; color: #b6cae3; font-size: 0.85rem;">
+                    <span style="display: block;">入站引导 · 常见说明 · 链接直达</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 浅色正文区 -->
+<section class="section-light" id="intro">
+    <div class="container">
+        <h2 class="section-title">页面定位与结构</h2>
+        <p style="margin-bottom: 24px; max-width: 680px; color: #1f3249;">
+            本页以导航为骨架，围绕 <a href="https://intl-fifa26.com">世界杯</a> 相关内容整理三个场景模块，便于不同需求的访问者快速选取入口。不包含冗余跳转，强调信息密度与实用层级。
+        </p>
+
+        <!-- 三个场景模块 -->
+        <div class="card-grid" id="scenarios">
+            <div class="feature-card">
+                <h3>🏟️ 赛事动态</h3>
+                <p>赛历、分组、场馆与实时资讯的聚合索引。通过外部源对接最新比赛数据，减少多页面切换成本。</p>
+                <span class="tag">实时</span>
+            </div>
+            <div class="feature-card">
+                <h3>📋 资格与规则</h3>
+                <p>各大洲晋级路径、赛制说明、关键时间节点。面向深度关注者提供简明规则框架，辅助理解赛程结构。</p>
+                <span class="tag">参考</span>
+            </div>
+            <div class="feature-card">
+                <h3>🔗 稳定入口</h3>
+                <p>直达 <a href="https://intl-fifa26.com">世界杯</a> 官方集成页面，规避中介跳转。适合需要直接访问核心资源的用户。</p>
+                <span class="tag">直达</span>
+            </div>
+        </div>
+
+        <!-- 常见说明 + 补充 -->
+        <div class="subsection" id="faq">
+            <h4>常见说明摘要</h4>
+            <div class="desc-list">
+                <div class="desc-item"><strong>页面性质</strong> 导航索引页，不存储赛事内容，所有外部链接指向对应资源。</div>
+                <div class="desc-item"><strong>链接说明</strong> 文内「世界杯」文字即指向 <a href="https://intl-fifa26.com">世界杯</a> 集成页，点击即跳转。</div>
+                <div class="desc-item"><strong>浏览器兼容</strong> 建议使用最新版 Chrome / Edge / Firefox 以获得完整排版。</div>
+                <div class="desc-item"><strong>更新频率</strong> 根据赛事进度阶段性更新模块内容与入口有效性。</div>
+            </div>
+
+            <div class="faq-preview">
+                <h4>❓ 常见疑问</h4>
+                <div class="faq-item">
+                    <strong>为什么使用导航页？</strong>
+                    <p>将分散的赛事相关信息按场景归类，降低访问者自行查找的负担。入口统一指向 <a href="https://intl-fifa26.com">世界杯</a> 页面，减少记忆多条 URL 的成本。</p>
+                </div>
+                <div class="faq-item">
+                    <strong>页面内是否包含实时数据？</strong>
+                    <p>不直接嵌入数据源。通过场景卡片提供方向性指引，具体赛果、积分等信息建议从 <a href="https://intl-fifa26.com">世界杯</a> 集成页获取。</p>
+                </div>
+                <div class="faq-item" style="margin-bottom: 0;">
+                    <strong>移动端浏览效果如何？</strong>
+                    <p>已适配响应式网格与字号，在手机与平板设备上均可保持清晰排版与触控友好间距。</p>
+                </div>
+            </div>
+
+            <!-- 额外的句子内嵌入链接 -->
+            <div class="inline-link-wrap">
+                📌 若需直接访问资源，请认准 <a href="https://intl-fifa26.com">世界杯</a> 官方集成页面。本导航页仅提供索引与说明，不替代原始内容。
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- 底部 -->
+<footer class="site-footer">
+    <div class="container">
+        <p style="margin-bottom: 6px;">导航索引 · 世界杯信息聚合说明</p>
+        <p>页面仅作引导用途 · 外部内容版权归各自持有者 · <a href="https://intl-fifa26.com">世界杯</a></p>
+    </div>
+</footer>
+
+</body>
+</html>
